@@ -5,22 +5,23 @@
 <html lang="ko-kr">
 <head>
 <meta charset="UTF-8">
-<title>action3.jsp</title>
+<title>action4.jsp</title>
 </head>
 <%
 	request.setCharacterEncoding("UTF-8");
 	
-	// 인자의 이름들 : 반복자 패턴(iterater : Iteratior, Enumeration)
-	// index 검색 방식(X), 다음(next) 요소 검색 방식(O) : 성능 향상
-	Enumeration<String> enums = request.getParameterNames();
+	// <인자명, 인자값[배열]>
+	Map<String,String[]> map = request.getParameterMap();
+	// 인자명들
+	Set<String> names = map.keySet();
+	Iterator<String>  it = names.iterator();
 
-	// hasMoreElements() : 데이터가 있는지 확인
-	while (enums.hasMoreElements()) {
+	while (it.hasNext()) {
 		
 		// 낱개의 인자명(이름)
-		String name = enums.nextElement();
+		String name = it.next();
 		// 값이 여러개일 수도 있으니까 배열로 받자
-		String[] value = request.getParameterValues(name);
+		String[] value = map.get(name);
 		
 		if(value.length == 1) {
 			// 인자의 값이 낱개일 경우
