@@ -1,0 +1,5 @@
+ 1. API reference link
+	- Servlet 4.0 : https://tomcat.apache.org/tomcat-9.0-doc/servletapi/index.html
+	- JSP 2.3 : https://tomcat.apache.org/tomcat-9.0-doc/jspapi/index.html
+	- EL 3.0 : https://tomcat.apache.org/tomcat-9.0-doc/elapi/index.html
+	- JEE 7 : https://docs.oracle.com/javaee/7/api/
