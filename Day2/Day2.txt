@@ -1,0 +1,13 @@
+
+1. 현재 PC의 포트(port) 사용 현황 확인 : netstat 활용
+
+   cmd창에 netstat -ano 입력
+    -a :​ 모든 포트(port) 출력
+    -n : IP주소:포트(port) 형식으로 출력
+    -o :​ PID (프로세스 ID) 표시
+
+2. HTML 태그
+   https://developer.mozilla.org/ko/
+
+3. CSS
+   https://www.w3schools.com/
