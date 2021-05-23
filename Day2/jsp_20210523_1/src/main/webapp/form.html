@@ -1,13 +1,39 @@
 <!DOCTYPE html>
+<!-- <html> : 태그, element
+	 lang="ko-kr" : 속성-->
 <html lang="ko-kr">
 <head>
 <meta charset="UTF-8">
 <title>form</title>
 </head>
 <body>
-	<form action="action.jsp">
-		
 
+	<!-- https:developer.mozilla.org/ko/docs/Web/HTML/Element/form -->
+	<!-- action : 인자 처리 페이지(객체) 
+		 method :  HTTP method(전송방식}
+		 주의) 전송시 기본 인코딩(Encoding) 방식 : ISO-8859-1(서유럽어) 
+		 
+		 get방식 : 웹브라우저(location bar)에 전송인자 노출,
+		 		   read목적,
+		 		   전송량에 제한(256byte~4KB),
+		 		   파일전송에 부적합
+		 		   http://localhost:8181/jsp_20210523_1/action.jsp?name1=jsp&name2=서블릿
+		 		    : ?키=값&키=값
+		 		   
+		 post방식 : 인자 노출 안됨,
+		 			한들깨짐
+		 
+		 form 전송 : 화면 전환-->
+		 
+	<!-- <form action="action.jsp" method="get"> -->
+		<form action="action.jsp" method="post">
+		
+		<!-- 전송할 인자 -->
+		name 1 : <input type="text" id="name1" name="name1"/><br>
+		name 2 : <input type="text" id="name2" name="name2"/><br>
+		
+		<input type="submit" value="전송">
+		<button type="submit" >버튼 전송</button>
 
 
 	</form>
