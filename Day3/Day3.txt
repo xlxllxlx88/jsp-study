@@ -1,1 +1,23 @@
 1. servlet은 java 코드이기때문에 java파일과 같은 위치에 만든다 .
+	superClass에는 'javax.servlet.http.HttpServlet'가 반드시 들어가야한다.
+	
+	
+2. form은 get, post방식만 지원
+
+3. meta-data(모체가 되는 data)
+   - 설정 정보, 형상(configuration)관리 정보
+   - 과정 승인 정보 - 과정(실체)
+   - index : table에 대한 정보를 가지고 있다.
+   - @WebServlet(
+		description = "데모 서블릿", 
+		urlPatterns = { 
+				"/DenmoServlet", 
+				"/demo.sj", 
+				"/demo.do"
+		}, 
+		initParams = { 
+				@WebInitParam(name = "java", value = "16", description = "자바의 버전"), 
+				@WebInitParam(name = "jsp", value = "2.3", description = "JSP의 버전")
+		})
+		: 서블릿의 정보를 가지고 있다.
+   - text(~.properties. ~.xml, ~.json, ~.y(a)ml, @annotation .....)
