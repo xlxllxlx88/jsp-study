@@ -21,3 +21,5 @@
 		})
 		: 서블릿의 정보를 가지고 있다.
    - text(~.properties. ~.xml, ~.json, ~.y(a)ml, @annotation .....)
+   
+4. web.xml > init > service > go메서드(doGet,doPosst) > destory 순서로 돌아가는 방식
