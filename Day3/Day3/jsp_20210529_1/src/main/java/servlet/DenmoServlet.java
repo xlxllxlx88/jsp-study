@@ -62,16 +62,29 @@ public class DenmoServlet extends HttpServlet {
 	 * 서비스가 doGet, doPost 호출을 막고 있어서 잘 사용안함, get방식사용할 때는 doGet바로 호출, post방식으로 사용할 때는 doPost 바로 호출
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
-//	@Override
-//	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		// TODO Auto-generated method stub
-//		System.out.println("request : 인자를 받을 때");
-//		System.out.println("response : 인자를 요청할 때");
-//		System.out.println("---------------- service ----------------");
-//		
-//		// doGet호출
-//		doGet(request, response);
-//	}
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		System.out.println("request : 인자를 받을 때");
+		System.out.println("response : 인자를 요청할 때");
+		System.out.println("---------------- service ----------------");
+		
+		// doGet호출
+		//doGet(request, response);
+		
+		String httpMethod = request.getMethod();
+		System.out.println("httpMethod : " + httpMethod);
+		
+		// service를 사용해도 되지만 소스 낭비임
+		// 굳이 써야하는 경우 제외하고는 아래 doGet, doPost 바로 호출
+		if(httpMethod.equals("GET")){
+			// GET 방식일 때
+			doGet(request, response);
+		} else if(httpMethod.equals("POST")){
+			//POST 방식일 때
+			doPost(request, response);
+		}
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -87,18 +100,49 @@ public class DenmoServlet extends HttpServlet {
 		// content type 구성: MIME; charset
 		// ex) "text/html; charset=UTF-8"
 		// <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+		
+		// 한글인자처리
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.println("out : " + "서블릿 get");
+		out.println("<br>");
+		out.println("<br>");
+		out.println("out : " + "<br><u><b>서블릿 get</b></u>");
+		out.println("<hr>");
+		
+		// 인자 처리/출력
+		String id = request.getParameter("id");
+		out.println("id : " + id);
+		out.println("<br>");
+//		String name = request.getParameter("name") == null ? "name 인자 null"
+//					: request.getParameter("name").trim().equals("") ? "name 인자 없음" 
+//					:  request.getParameter("name");
+		
+		String name = request.getParameter("name");
+		name = name == null ? "name 인자 null"
+			 : name.trim().equals("") ? "name 인자 없음"
+			 : name;
+		out.println("name : " + name);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		System.out.println("doPost");
-		doGet(request, response);
+		
+		// POST 방식 전용 인코딩 처리(변환) 
+		// : ISO-8859-1 => UTF-8 
+		request.setCharacterEncoding("UTF-8"); 
+		
+		String id = request.getParameter("id");
+		String name = request.getParameter("name");
+		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		out.println("id : " + id);
+		out.println("name : " + name);
 	}
-
 }

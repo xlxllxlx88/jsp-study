@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+<head>
+<meta charset="UTF-8">
+<title>form</title>
+</head>
+<body>
+
+	<!-- JSP : contextPath
+		EL : ${pageContext.request.contextPath}
+		표현식 : <%= request.getContextPath() %>
+	 -->
+	<form method="GET" action="demo.do">
+	<!-- <form method="POST" action="/jsp_20210529_1/demo.do"> -->
+	
+	    <!-- 필수 항목 : required, regex(정규식) : pattern -->
+		id : <input type="text" name="id" 
+			    pattern="[a-zA-Z]{1}\w{7,19}" 
+			    required
+			    title="숫자 8~20사이로 입력하십시오."><br>
+		name : <input type="text" name="name"
+				pattern="[가-힣]{2,20}"
+				title="한글 이름으로 2~20자 사이로 입력하십시오."><br>
+		<button type="submit">전송</button>
+		
+	</form>
+	
+</body>
+</html>
