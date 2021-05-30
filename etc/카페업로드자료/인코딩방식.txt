@@ -1,0 +1,8 @@
+인코딩(encoding) 방식(링크)
+
+https://en.wikipedia.org/wiki/ISO/IEC_8859-1
+https://www.w3schools.com/charsets/ref_html_8859.asp
+https://namu.wiki/w/%ED%95%9C%EA%B8%80%20%EC%9D%B8%EC%BD%94%EB%94%A9
+https://namu.wiki/w/%EC%99%84%EC%84%B1%ED%98%95
+https://namu.wiki/w/CP949
+https://namu.wiki/w/%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C

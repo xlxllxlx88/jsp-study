@@ -1,0 +1,9 @@
+현재 PC의 포트(port) 사용 현황 확인 : netstat 활용
+
+netstat -ano
+
+-a :​ 모든 포트(port) 출력
+
+-n : IP주소:포트(port) 형식으로 출력
+
+-o :​ PID (프로세스 ID) 표시
