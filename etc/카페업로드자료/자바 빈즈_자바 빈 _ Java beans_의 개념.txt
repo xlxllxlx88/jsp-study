@@ -1,0 +1,449 @@
+1. 자바빈(Java bean(s)) 정의
+
+​
+
+자바 개발자들이 재사용이 가능한 소프트웨어 개체를 만들 수 있게 하는 컴포넌트 기술. 이러한 개체들은 공유가 가능하다. 데이터 베이스 회사가 자사의 소프트웨어를 지원하는 자바빈을 만들어주면 개발자들은 자신들의 프로젝트에 그것을 쉽게 포함하여 사용할 수 있다.
+
+[네이버 지식백과] 자바빈 [JavaBeans] (컴퓨터인터넷IT용어대사전, 2011. 1. 20., 전산용어사전편찬위원회)
+
+ex) VO(Value Object), DTO(Data Transfer Object), DAO(Data Access Object) 자바빈 객체
+
+​
+
+참고) 컴포넌트(component)
+
+소프트웨어 개발을 마치 레고(Lego) 블록을 쌓듯이 쉽게 할 수 있도록 하는 기술을 말한다.즉, 기존의 코딩 방식에 의한 개발에서 벗어나 소프트웨어 구성단위(module)를 미리 만든 뒤 필요한 응용 기술을 개발할 때 이 모듈을 조립하는 기술을 말한다. 컴포넌트 기술을 활용하면 복잡한 정보 시스템을 신속하게 구축할 수 있으며, 유사한 정보 시스템을 구축할 때 재사용이 가능한 장점이 있다. 특히, 급속도로 변하는 인터넷 환경에서 표준화된 소프트웨어를 만드는 것이 필요하기 때문에 컴포넌트는 매우 중요하다. 이미 국가 차원에서 소프트웨어의 컴포넌트화를 추진하고 있는 미국은 소프트웨어의 컴포넌트화로 개발생산성이 10배, 품질보증이 16배씩이나 증가했다는 보고가 있다. 국내에서는 한국소프트웨어 컴포넌트 컨소시엄(KCSC)이 발족돼 2002년까지 3,000개의 공용 컴포넌트를 개발하기로 하였으며, 정부는 표준화를 통해 연평균 약 100%의 고성장이 예상되는 소프트웨어 컴포넌트 산업을 적극 육성하기로 했다.
+
+[네이버 지식백과] 컴포넌트 (매일경제, 매경닷컴)
+
+https://terms.naver.com/entry.nhn?docId=17120&cid=43659&categoryId=43659
+
+​
+
+참고) EJB(Enterprise Java Beans)
+
+서버/클라이언트 모형을 갖춘 네트워크의 서버 측에서 운용되는, 자바 언어로 이루어진 프로그램 컴포넌트 작성용 구조. 클라이언트에게 빈이라는 프로그램 컴포넌트를 분배하는 자바빈(Java Beans) 기술로 되어 있고, 새로운 프로그램 컴포넌트의 변경이나 추가 시에 개별 컴퓨터를 갱신하지 않고 서버에서 변화를 제어할 수 있는 애플리케이션에서 재사용할 수 있는데, EJB 컴포넌트 수행을 위해서는 컨테이너라고 하는 특정 애플리케이션의 일부가 되어야 한다.
+
+[네이버 지식백과] 기업 자바빈 [Enterprise Java Beans, 企業-] (IT용어사전, 한국정보통신기술협회)
+
+​
+
+2. 자바빈 작성의 일반적인 설계 규칙 
+
+​
+
+1) 멤버 필드별로 별도의 getter/setter(get method/set method)가 존재해야함.
+
+2) getter는 인자(매개변수)가 존재하지 않아야함.
+
+3) setter는 하나 이상의 매개변수가 존재해야함.
+
+4) 일반적으로 생성자는 매개변수가 존재하지 않음. (경우에 따라서는 오버로딩 생성자를 사용하는 경우도 있음)
+
+5) 멤버 필드(변수)의 접근 제어자(지시자)는 일반적으로 보안(캡슐화:encapsulation)을 위해 private 으로 설정.
+
+(실무적으로 볼 때 경우에 따라 다양하게 접근 제어자 사용하는 경우도 있음)
+
+6) setter/getter 접근 제어자는 일반적으로 가장 개방적인 public, 클래스는 public 으로 정의함.
+
+​
+
+관련 참고 도서)
+
+1) 코어 J2EE 패턴 디팍 알루어, 존 크루피, 댄 말크스 저
+
+2) 이펙티브 자바 Effective Java 조슈아 블로크 저
+
+3) 엔터프라이즈 애플리케이션 아키텍처 패턴 엔터프라이즈 애플리케이션 구축을 위한 객체지향 설계의 원리와 기법 마틴 파울러 저
+
+4) Java EE 아키텍트 핸드북 2판 성공적인 Java EE 애플리케이션 아키텍트가 되는 방법   DEREK C. ASHMORE 저
+
+5) Java EE 디자인 패턴 아키텍처를 이해하기 위한 디자인 패턴   무라트 예네르, 알렉스 시돔 공저
+
+​
+
+3. 실무 사례
+
+​
+
+1) S사
+
+​
+
+https://github.com/anyframejava/anyframe-java-core/blob/master/core/projects/anyframe-core/src/main/java/org/anyframe/datatype/SearchVO.java
+
+​
+
+/*
+
+ * Copyright 2002-2012 the original author or authors.
+
+ *
+
+ * Licensed under the Apache License, Version 2.0 (the "License");
+
+ * you may not use this file except in compliance with the License.
+
+ * You may obtain a copy of the License at
+
+ *
+
+ *      http://www.apache.org/licenses/LICENSE-2.0
+
+ *
+
+ * Unless required by applicable law or agreed to in writing, software
+
+ * distributed under the License is distributed on an "AS IS" BASIS,
+
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+
+ * See the License for the specific language governing permissions and
+
+ * limitations under the License.
+
+ */
+
+package org.anyframe.datatype;
+
+ 
+
+/**
+
+ * This SearchVO entity class contains attributes for
+
+ * common searching information and putter,setter
+
+ * methods of them. And it contains toString method for
+
+ * logging.
+
+ *
+
+ * @author Taeho Kim
+
+ */
+
+public class SearchVO implements java.io.Serializable {
+
+ 
+
+    private static final long serialVersionUID = 1L;
+
+ 
+
+    private String searchCondition = "";
+
+ 
+
+    private String searchKeyword = "";
+
+ 
+
+    private int pageIndex = 1;
+
+ 
+
+    public String getSearchCondition() {
+
+        return searchCondition;
+
+    }
+
+ 
+
+    public void setSearchCondition(String searchCondition) {
+
+        this.searchCondition = searchCondition;
+
+    }
+
+ 
+
+    public String getSearchKeyword() {
+
+        return searchKeyword;
+
+    }
+
+ 
+
+    public void setSearchKeyword(String searchKeyword) {
+
+        this.searchKeyword = searchKeyword;
+
+    }
+
+ 
+
+    public int getPageIndex() {
+
+        return pageIndex;
+
+    }
+
+ 
+
+    public void setPageIndex(int pageIndex) {
+
+        this.pageIndex = pageIndex;
+
+    }
+
+ 
+
+    public String toString() {
+
+        StringBuilder arguments = new StringBuilder();
+
+        arguments.append(" searchCondition - " + searchCondition + "\n");
+
+        arguments.append(" searchKeyword - " + searchKeyword + "\n");
+
+        arguments.append(" pageIndex - " + pageIndex + "\n");
+
+ 
+
+        return arguments.toString();
+
+    }
+
+ 
+
+}
+
+​
+
+2) 전자정부
+
+​
+
+package egovframework.lab.dataaccess.common;
+
+ 
+
+import java.io.Serializable;
+
+ 
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
+ 
+
+public class SearchVO implements Serializable {
+
+ 
+
+    /** serialVersionUID */
+
+    private static final long serialVersionUID = 706986535304576134L;
+
+ 
+
+    /** 검색조건 */
+
+    private String searchCondition = "";
+
+ 
+
+    /** 검색Keyword */
+
+    private String searchKeyword = "";
+
+ 
+
+    /** 검색사용여부 */
+
+    private String searchUseYn = "";
+
+ 
+
+    /** 현재페이지 */
+
+    private int pageIndex = 1;
+
+ 
+
+    /** 페이지갯수 */
+
+    private int pageUnit = 10;
+
+ 
+
+    /** 페이지사이즈 */
+
+    private int pageSize = 10;
+
+ 
+
+    /** firstIndex */
+
+    private int firstIndex = 1;
+
+ 
+
+    /** lastIndex */
+
+    private int lastIndex = 1;
+
+ 
+
+    /** recordCountPerPage */
+
+    private int recordCountPerPage = 10;
+
+ 
+
+    public int getFirstIndex() {
+
+        return firstIndex;
+
+    }
+
+ 
+
+    public void setFirstIndex(int firstIndex) {
+
+        this.firstIndex = firstIndex;
+
+    }
+
+ 
+
+    public int getLastIndex() {
+
+        return lastIndex;
+
+    }
+
+ 
+
+    public void setLastIndex(int lastIndex) {
+
+        this.lastIndex = lastIndex;
+
+    }
+
+ 
+
+    public int getRecordCountPerPage() {
+
+        return recordCountPerPage;
+
+    }
+
+ 
+
+    public void setRecordCountPerPage(int recordCountPerPage) {
+
+        this.recordCountPerPage = recordCountPerPage;
+
+    }
+
+ 
+
+    public String getSearchCondition() {
+
+        return searchCondition;
+
+    }
+
+ 
+
+    public void setSearchCondition(String searchCondition) {
+
+        this.searchCondition = searchCondition;
+
+    }
+
+ 
+
+    public String getSearchKeyword() {
+
+        return searchKeyword;
+
+    }
+
+ 
+
+    public void setSearchKeyword(String searchKeyword) {
+
+        this.searchKeyword = searchKeyword;
+
+    }
+
+ 
+
+    public String getSearchUseYn() {
+
+        return searchUseYn;
+
+    }
+
+ 
+
+    public void setSearchUseYn(String searchUseYn) {
+
+        this.searchUseYn = searchUseYn;
+
+    }
+
+ 
+
+    public int getPageIndex() {
+
+        return pageIndex;
+
+    }
+
+ 
+
+    public void setPageIndex(int pageIndex) {
+
+        this.pageIndex = pageIndex;
+
+    }
+
+ 
+
+    public int getPageUnit() {
+
+        return pageUnit;
+
+    }
+
+ 
+
+    public void setPageUnit(int pageUnit) {
+
+        this.pageUnit = pageUnit;
+
+    }
+
+ 
+
+    public int getPageSize() {
+
+        return pageSize;
+
+    }
+
+ 
+
+    public void setPageSize(int pageSize) {
+
+        this.pageSize = pageSize;
+
+    }
+
+ 
+
+    public String toString() {
+
+        return ToStringBuilder.reflectionToString(this);
+
+    }
+
+ 
+
+} 
