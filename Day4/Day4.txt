@@ -2,3 +2,12 @@ pageContext.getOut() : pageContext를 통해 out 객체를 얻어낼 수 있다.
 pageContext.include("~~"); : <jsp:include> 와 동일하다.
 
 out.flush(); : 버퍼를 비우는 역할을 한다.
+
+
+
+서버 프로그램 구현
+프레임워크 - 모듈화, 재사용성, 확장성, 제어의 흐름
+데이터 저장 계층 또는 영속 계층 - DAO, DTO, VO
+	전화번호 필드는 보통 3개 010-1234-5678 => servlet이 뭔가를 처리해서 =>
+	DB에 저장 할 때는 phone 하나로 뭉쳐서 갈 수도 있음
+	
