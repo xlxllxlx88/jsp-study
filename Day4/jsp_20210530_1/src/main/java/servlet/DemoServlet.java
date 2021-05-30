@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import domain.VO;
+
 /**
  * Servlet implementation class ActionServlet
  */
@@ -49,6 +51,13 @@ public class DemoServlet extends HttpServlet {
 		
 		// 인자 => result.jsp 이동(forward)
 		request.setAttribute("txt2", txt);
+		
+		// 인자 => VO => forward
+		VO vo = new VO();
+		vo.setTxt(txt);
+		
+		request.setAttribute("vo", vo);
+		
 		
 		// <jsp:forword page="result.jsp"/>
 		// jsp : pageContext.forqward("result.jsp");
