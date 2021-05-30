@@ -1,0 +1,412 @@
+1. 서블릿(Servlet)
+
+​
+
+JEE(Java Enterprise Edition)에 포함되어 있으며, 웹페이지를 동적으로 생성하는 서버측 프로그램 모듈. 쉽게 말해서 웹서버에서 구동되는 "웹용 자바 코드"라고 볼 수 있습니다.
+
+​
+
+참고 링크) https://ko.wikipedia.org/wiki/%EC%9E%90%EB%B0%94_%EC%84%9C%EB%B8%94%EB%A6%BF
+
+​
+
+2. 생명주기(Life Cycle) : 구동 단계
+
+​
+
+
+​
+
+1) 웹 브라우저(클라이언트)에서 요청(request)이 오면 웹서버가 요청을 수용합니다.
+
+​
+
+2) 웹서버는 web.xml 이나 애너테이션(annotation) 같은 설정 정보(configuration infomation)를 참고하여 서블릿이 존재하는지 여부를 검색(invoke)합니다.
+
+​
+
+3) 로딩(loading)된 설정 정보를 참고하여 기본 웹 객체의 생성자를 통해서 서블릿 인스턴스(객체)를 생성합니다.
+
+​
+
+4) 서블릿 내부에 서블릿 초기화에 관여하는 init() 메서드 여부를 확인하여 모코드가 오버라이딩되어 있으면 이를 우선적으로 실행합니다.
+
+​
+
+5) 그 이후에 각종 요청/응답 웹 관련 서비스를 담당하는 service() 메서드가 존재하는지 검색하고 존재하면 우선적으로 여기에 오버라이딩된 코드를 실행합니다.
+
+​
+
+6) 만약 service 메서드가 없다면 do 계열의 메서드(가령, doGet 등)를 HTTP 요청에 따른 HTTP method에 맞게 해당되는 do 계열 메서드들이 바로 실행합니다. 즉, get 방식의 요청이 들어왔으면 doGet이 실행되고, post 방식의 요청이 들어왔으면 doPost 메서드가 실행됩니다. do 계열의 메서드 실행시에 service 메서드 안에서 일방적으로 호출될 수도 있고 service가 불필요하여 사용하지 않게 되면 바로 do 계열의 메서드가 HTTP method(메서드)의 경우에 따라 호출됩니다. 유의할 점은 service가 존재하는 상태에서 do계열의 메서드들이 있고 service에서 특별히 do계열의 메서드를 호출하지 않는다면 do계열의 메서드가 호출되지 않습니다.
+
+​
+
+7) 위의 과정이 실행되면 서블릿이 소멸되는데 이때 웹서버는 destroy() 메서드가 존재하고 있다면 이를 수행한 이후 서블릿을 소멸시킵니다.
+
+​
+
+3. 버전에 따른 서블릿
+
+​
+
+1) 2.5 버전 이하 방식
+
+​
+
+- web.xml : 서블릿 설정 정보 기록
+
+​
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+
+  <display-name>Servlet25Demo</display-name>
+
+  <welcome-file-list>
+
+    <welcome-file>index.html</welcome-file>
+
+    <welcome-file>index.jsp</welcome-file>
+
+  </welcome-file-list>
+
+ 
+
+  <servlet>
+
+    <description></description>
+
+    <display-name>DemoServlet</display-name>
+
+    <servlet-name>DemoServlet</servlet-name>
+
+    <servlet-class>servlet.DemoServlet</servlet-class>
+
+    <init-param>
+
+      <description>서블릿 버전</description>
+
+      <param-name>demoParam</param-name>
+
+      <param-value>2.5</param-value>
+
+    </init-param>
+
+  </servlet>
+
+  <servlet-mapping>
+
+    <servlet-name>DemoServlet</servlet-name>
+
+    <url-pattern>/DemoServlet</url-pattern>
+
+    <url-pattern>/servlet.do</url-pattern>
+
+  </servlet-mapping>
+
+</web-app>
+
+​
+
+- Java 코드
+
+​
+
+package servlet;
+
+ 
+
+import java.io.IOException;
+
+import javax.servlet.ServletConfig;
+
+import javax.servlet.ServletException;
+
+import javax.servlet.http.HttpServlet;
+
+import javax.servlet.http.HttpServletRequest;
+
+import javax.servlet.http.HttpServletResponse;
+
+ 
+
+/**
+
+ * Servlet implementation class DemoServlet
+
+ */
+
+public class DemoServlet extends HttpServlet {
+
+    private static final long serialVersionUID = 1L;
+
+       
+
+    /**
+
+     * @see HttpServlet#HttpServlet()
+
+     */
+
+    public DemoServlet() {
+
+        System.out.println("서블릿 실행 시작");
+
+    }
+
+ 
+
+    /**
+
+     * @see Servlet#init(ServletConfig)
+
+     */
+
+    public void init(ServletConfig config) throws ServletException {
+
+        System.out.println("init 메서드");
+
+    }
+
+ 
+
+    /**
+
+     * @see Servlet#destroy()
+
+     */
+
+    public void destroy() {
+
+        System.out.println("destroy 메서드");
+
+    }
+
+ 
+
+    /**
+
+     * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
+
+     */
+
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        System.out.println("service 메서드");
+
+    }
+
+ 
+
+    /**
+
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+
+     */
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        System.out.println("doGet 메서드");
+
+        System.out.println("인자 : "+request.getParameter("txt"));
+
+    }
+
+ 
+
+    /**
+
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+
+     */
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        System.out.println("doPost 메서드");
+
+        System.out.println("인자 : "+request.getParameter("txt"));
+
+    }
+
+ 
+
+    /**
+
+     * @see HttpServlet#doPut(HttpServletRequest, HttpServletResponse)
+
+     */
+
+    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        System.out.println("doPut 메서드");
+
+    }
+
+ 
+
+} //
+
+​
+
+3) 3.0 버전 이상 방식
+
+: 서블릿 설정 정보를 annotation으로 기록함
+
+​
+
+package servlet;
+
+ 
+
+import java.io.IOException;
+
+import javax.servlet.ServletConfig;
+
+import javax.servlet.ServletException;
+
+import javax.servlet.annotation.WebInitParam;
+
+import javax.servlet.annotation.WebServlet;
+
+import javax.servlet.http.HttpServlet;
+
+import javax.servlet.http.HttpServletRequest;
+
+import javax.servlet.http.HttpServletResponse;
+
+ 
+
+/**
+
+ * Servlet implementation class DemoServlet
+
+ */
+
+@WebServlet(
+
+        urlPatterns = {
+
+                "/DemoServlet",
+
+                "/servlet.do"
+
+        },
+
+        initParams = {
+
+                @WebInitParam(name = "demoParam", value = "4.0", description = "서블릿 버전")
+
+        })
+
+public class DemoServlet extends HttpServlet {
+
+    private static final long serialVersionUID = 1L;
+
+       
+
+    /**
+
+     * @see HttpServlet#HttpServlet()
+
+     */
+
+    public DemoServlet() {
+
+        System.out.println("서블릿 실행 시작");
+
+    }
+
+ 
+
+    /**
+
+     * @see Servlet#init(ServletConfig)
+
+     */
+
+    public void init(ServletConfig config) throws ServletException {
+
+        System.out.println("init 메서드");
+
+    }
+
+ 
+
+    /**
+
+     * @see Servlet#destroy()
+
+     */
+
+    public void destroy() {
+
+        System.out.println("destroy 메서드");
+
+    }
+
+ 
+
+    /**
+
+     * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
+
+     */
+
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        System.out.println("service 메서드");
+
+    }
+
+ 
+
+    /**
+
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+
+     */
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        System.out.println("doGet 메서드");
+
+        System.out.println("인자 : "+request.getParameter("txt"));
+
+    }
+
+ 
+
+    /**
+
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+
+     */
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        System.out.println("doPost 메서드");
+
+        System.out.println("인자 : "+request.getParameter("txt"));
+
+    }
+
+ 
+
+    /**
+
+     * @see HttpServlet#doPut(HttpServletRequest, HttpServletResponse)
+
+     */
+
+    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        System.out.println("doPut 메서드");
+
+    }
+
+ 
+
+} //
+
+​
