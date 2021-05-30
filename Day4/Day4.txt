@@ -1,0 +1,4 @@
+pageContext.getOut() : pageContext를 통해 out 객체를 얻어낼 수 있다.
+pageContext.include("~~"); : <jsp:include> 와 동일하다.
+
+out.flush(); : 버퍼를 비우는 역할을 한다.
