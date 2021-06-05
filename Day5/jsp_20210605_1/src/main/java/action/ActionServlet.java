@@ -1,13 +1,15 @@
 package action;
 
 import java.io.IOException;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import domain.MemberDTO;
+import domain.MemberVO;
 
 /**
  * Servlet implementation class ActionServlet
@@ -35,29 +37,50 @@ public class ActionServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		
+//		// 인자 -> request -> DTO/VO -> DB저장(DAO)
+//		// 3개의 전화번호 필트 -> 1개의 전화번호 DB table 필드
+//		Map<String,String[]> map = request.getParameterMap();
+//		
+//		
+//		// 인자가 넘어오면 로그를 먼저 찍어보세요
+//		// 인자확인 -람다?
+//		map.forEach((k, v) -> System.out.println(k+"="+v[0]));
+//		map.keySet().forEach(x -> System.out.println(x + "=" + map.get(x)[0]));
+//		
+//		// map.entrySet().forEach(x->System.out.println(x));
+//		// map.entrySet().forEach(System.out::println);
+//		
+//		// DAO
+//		// ex) dao.insertMember(memberVO);
+//		// map -> VO 변환
+//		// MemberVO member = new MemberVO(map);
+//		MemberVO member = new MemberVO(map);
+//		System.out.println("member : " + member.getPhone());
+//		
+//	} 
+		
+//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		
+//		// map으로 받은 인자를 VO로 치환
+//		MemberVO member = new MemberVO(request.getParameterMap());
+//		System.out.println("member : " + member);
+//		
+//		// DAO
+//		// ex) dao.insertMember(memberVO);
+//	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// 인자 -> request -> DTO/VO -> DB저장(DAO)
-		// 3개의 전화번호 필트 -> 1개의 전화번호 DB table 필드
-		Map<String,String[]> map = request.getParameterMap();
-		
-		
-		// 인자가 넘어오면 로그를 먼저 찍어보세요
-		// 인자확인 -람다?
-		map.forEach((k, v) -> System.out.println(k+"="+v[0]));
-		map.keySet().forEach(x -> System.out.println(x + "=" + map.get(x)[0]));
-		
-		// map.entrySet().forEach(x->System.out.println(x));
-		// map.entrySet().forEach(System.out::println);
+		// map -> DTO(form 1:1) -> VO(DB table 1:1)
+//		MemberDTO memberDTO = new MemberDTO(request.getParameterMap());
+//		System.out.println("memberDTO : " + memberDTO);
+//		MemberVO memberVO = new MemberVO(memberDTO);
+//		System.out.println("memberVO : " + memberVO);
 		
 		// DAO
 		// ex) dao.insertMember(memberVO);
-		// map -> VO 변환
-		// MemberVO member = new MemberVO(map);
-		
-		
-		} 
-		
-		
+	}
 
 }
