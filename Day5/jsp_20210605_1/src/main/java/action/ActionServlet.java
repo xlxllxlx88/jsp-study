@@ -74,8 +74,9 @@ public class ActionServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// map -> DTO(form 1:1) -> VO(DB table 1:1)
-//		MemberDTO memberDTO = new MemberDTO(request.getParameterMap());
-//		System.out.println("memberDTO : " + memberDTO);
+		// 인자받아서 생성자에 집어 넣음
+		MemberDTO memberDTO = new MemberDTO(request.getParameterMap());
+		System.out.println("memberDTO : " + memberDTO);
 //		MemberVO memberVO = new MemberVO(memberDTO);
 //		System.out.println("memberVO : " + memberVO);
 		

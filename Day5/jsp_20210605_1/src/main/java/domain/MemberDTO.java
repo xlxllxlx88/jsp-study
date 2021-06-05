@@ -23,8 +23,32 @@ public class MemberDTO {
 		Field fld;
 		
 		while(it.hasNext()) {
+			
+			String formFld = it.next();
+			
 			// 인자명 => DTO의 해당 인자명의 멤버 필드
 			// reflection 활용
+			try {
+				fld = this.getClass().getDeclaredField(formFld);
+				System.out.println("필드명 : " + fld.getName());
+				
+				// 접근성 확보
+				fld.setAccessible(true);
+				
+				// key값 형태를 set
+				// fld.set(this, map.get(fld.getName())[0]);
+				fld.set(this, map.get(formFld)[0]);
+				
+			} catch (NoSuchFieldException | SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		}
 		
