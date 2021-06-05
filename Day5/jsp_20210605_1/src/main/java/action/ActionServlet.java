@@ -52,6 +52,8 @@ public class ActionServlet extends HttpServlet {
 		
 		// DAO
 		// ex) dao.insertMember(memberVO);
+		// map -> VO 변환
+		// MemberVO member = new MemberVO(map);
 		
 		
 		} 
