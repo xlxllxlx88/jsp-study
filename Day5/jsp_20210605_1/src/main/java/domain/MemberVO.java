@@ -30,6 +30,13 @@ public class MemberVO {
 	}
 	
 	
+	public MemberVO(MemberDTO memberDTO) {
+		this.phone = memberDTO.getPhone1() + "-"
+				   + memberDTO.getPhone2() + "-"
+				   + memberDTO.getPhone3();
+	}
+	
+	
 
 	public String getPhone() {
 		return phone;

@@ -77,11 +77,14 @@ public class ActionServlet extends HttpServlet {
 		// 인자받아서 생성자에 집어 넣음
 		MemberDTO memberDTO = new MemberDTO(request.getParameterMap());
 		System.out.println("memberDTO : " + memberDTO);
-//		MemberVO memberVO = new MemberVO(memberDTO);
-//		System.out.println("memberVO : " + memberVO);
+
+		MemberVO memberVO = new MemberVO(memberDTO);
+		System.out.println("memberVO : " + memberVO);
 		
+		
+		MemberVO memberVO2 = new MemberVO(new MemberDTO(request.getParameterMap()));
 		// DAO
-		// ex) dao.insertMember(memberVO);
+		// ex) dao.insertMember(memberVO2);
 	}
 
 }
