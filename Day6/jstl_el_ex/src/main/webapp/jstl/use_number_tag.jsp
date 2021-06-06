@@ -15,6 +15,9 @@
 통화 : <fmt:formatNumber value="${price}" 
             type="currency" currencySymbol="원" /><br>
             
+통화 : <fmt:formatNumber value="${price}" 
+            type="currency" currencySymbol="\\" /><br>
+            
 퍼센트 : <fmt:formatNumber value="${price}" 
             type="percent" groupingUsed="false" /><br>
 

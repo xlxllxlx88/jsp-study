@@ -17,8 +17,9 @@
 	<b>${alphabet}</b>&nbsp;
 </c:forTokens>
 <br>
+<!-- delims은 forTokens태그에 필수 -->
 <c:set var="data" value="홍길동,김길동,고길동"/>
-<c:forTokens var="varData" items="${data}" delims=",">
+<c:forTokens var="varData" items="${data}" delims=", ">
 	<b>${varData}</b>&nbsp;
 </c:forTokens>
 

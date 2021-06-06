@@ -33,6 +33,7 @@
 <fmt:formatNumber value="0.15" type="percent"/><br>
 <fmt:formatNumber value="500567300" pattern="###,###,###"/><p>
 
+<fmt:formatDate value="${date}" pattern="yyyy-mm-dd"/><br>
 <fmt:formatDate value="${date}" type="date"/><br>
 <fmt:formatDate value="${date}" type="time"/><br>
 <fmt:formatDate value="${date}" type="both"/><p>

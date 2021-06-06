@@ -16,6 +16,7 @@
 	<li><a href="${searchUrl}">링크1</a></li>
 	<li><a href="<c:url value="/use_if_tag.jsp" />">링크2</a></li>
 	<li><a href="<c:url value="./use_if_tag.jsp" />">링크3</a></li>
+	<li><a href="<c:url value="use_if_tag.jsp" />">링크3이랑 같아요</a></li>
 </ul>
 
 </body>

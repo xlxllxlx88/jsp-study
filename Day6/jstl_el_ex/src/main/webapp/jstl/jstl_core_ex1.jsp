@@ -8,9 +8,28 @@
 </head>
 
 <body>
-<c:set var="test" value="Hello JSTL!"/>
-<h3>&lt;c:set&gt; 사용 후 : <c:out value="${test}"/></h3>
-<c:remove var="test"/>
+
+
+<%
+	// Scope
+	// JSP : application > session > request > page
+	// EL : applicationScope > sessionScope > requestScope > pageScope
+
+	//pageContext.setAttribute("test", "JSTL!");
+	request.setAttribute("test", "JSTL ver!");
+
+%>
+
+
+<%-- <c:set var="test" value="Hello JSTL!"/> --%>
+<h3>test : ${requestScope.test};</h3>
+<hr>
+<h3>&lt;c:set&gt; 사용 후 : <c:out value="${requestScope.test}" escapeXml="true"/></h3>
+<h3>&lt;c:set&gt; 사용 후 : <c:out value="${requestScope.test}" escapeXml="false"/></h3>
+<%-- <c:remove var="test"/> --%>
+<%
+	request.removeAttribute("test");
+%>
 <h3>&lt;c:remove&gt; 사용 후 : <c:out value="${test}"/></h3>
 
 <c:catch var="err">
@@ -18,12 +37,16 @@
 </c:catch>
 <h3>&lt;c:catch&gt;로 잡아낸 오류 : <c:out value="${err}"/></h3>
 
+<!-- 연산자 < 대신 lt로 써도 됨 -->
 <c:if test="${5<10}">
 <h3>5는 10보다 작다.</h3>
 </c:if>
+<!-- 연산자 == 대신 eq로 써도 됨 -->
+<!-- != 같지 않다 ne -->
 <c:if test="${6+3==9}">
 <h3>6 + 3 은 9이다.</h3>
 </c:if>
+
 
 <c:choose>
 	<c:when test="${5+10==50}">
