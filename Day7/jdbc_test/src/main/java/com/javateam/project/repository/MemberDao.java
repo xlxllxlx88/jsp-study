@@ -9,24 +9,24 @@ public interface MemberDao {
 	
 	/**
 	 * 회원정보 생성
-	 * @param member
+	 * @param member 회원 객체
 	 */
 	void insertMember(MemberVO member);
 	
 	/**
 	 * 회원정보 수정
-	 * @param member
+	 * @param member 회원 객체
 	 */
 	void updateMember(MemberVO member);
 	
 	/**
 	 * 회원정보 삭제
-	 * @param id
+	 * @param id 회원 아이디
 	 */
 	void deleteMember(String id);
 	
 	/**
-	 * 
+	 * 전체 회원 정보
 	 * @return 전체 회원 리스트
 	 */
 	List<MemberVO> getAllMembers();
