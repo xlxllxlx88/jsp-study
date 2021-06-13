@@ -33,3 +33,6 @@ WHERE id='java';
 
 DELETE FROM MEMBER_TBl WHERE id='java';
 
+-- 페이징
+-- limit 시작 행(row) 번호(0~), 페이지당 게시글 갯수(인원수); 
+SELECT * FROM member_tbl limit 3,5;

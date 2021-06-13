@@ -10,20 +10,21 @@ public interface MemberDao {
 	/**
 	 * 회원정보 생성
 	 * @param member 회원 객체
+	 * @return 
 	 */
-	void insertMember(MemberVO member);
+	boolean insertMember(MemberVO member);
 	
 	/**
 	 * 회원정보 수정
 	 * @param member 회원 객체
 	 */
-	void updateMember(MemberVO member);
+	boolean updateMember(MemberVO member);
 	
 	/**
 	 * 회원정보 삭제
 	 * @param id 회원 아이디
 	 */
-	void deleteMember(String id);
+	boolean deleteMember(String id);
 	
 	/**
 	 * 전체 회원 정보

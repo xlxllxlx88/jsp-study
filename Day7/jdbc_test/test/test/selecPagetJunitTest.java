@@ -1,0 +1,63 @@
+package test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+
+import java.util.List;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import com.javateam.project.domain.MemberVO;
+import com.javateam.project.repository.MemberDao;
+import com.javateam.project.repository.MemberDaoImpl;
+
+public class selecPagetJunitTest {
+	
+	MemberDao dao;
+	List<MemberVO> members;
+
+	@Before
+	public void setUp() throws Exception {
+		
+		dao = MemberDaoImpl.getInstance();
+	}
+
+	@Test
+	public void test() {
+	
+		members = dao.getMembersByPage(3, 5);
+		
+		// 결과 유무 점검
+		assertNotNull(members); 
+		
+		// 결과의 개수(기대값)로 점검
+		assertEquals(1, members.size());
+		
+		// 특정 데이터 일치 여부 점검
+		// 1 페이지의 마지막 레코드의 id가 "java2" 인지 점검
+		//assertEquals("java2", members.get(4).getId());
+		
+	}
+	
+	// 반대 조건 테스트
+//	@Test
+//	public void test2() {
+//		
+//		// 성공여부 점검(테스트) : 단언(단정) : assert
+//		// 기대값 : true => green light
+//		// 기대값 : false => red light
+//		assertFalse(dao.insertMember(member));
+//		
+//	}
+	
+//	@Test
+//	public void test3() {
+//		
+//		// 성공여부 점검(테스트) : 단언(단정) : assert
+//		assertEquals(true, dao.insertMember(member));
+//		
+//	}
+
+}

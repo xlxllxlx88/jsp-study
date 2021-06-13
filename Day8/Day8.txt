@@ -1,0 +1,9 @@
+@Service
+public class MemberService {
+	@Autowired
+	MemberDao memberDao;
+	
+	@Transactional(readOnly=true)
+	public List<MemberVO> getMembersByPaging() {
+	}
+}

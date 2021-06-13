@@ -12,6 +12,8 @@ public class MemberVO {
 	private String name;
 	private String address;
 	private Date joindate;
-	
+
+	private int page;
+	private int limit;
 
 }

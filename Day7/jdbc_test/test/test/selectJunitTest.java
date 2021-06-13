@@ -1,0 +1,70 @@
+package test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+
+import java.util.List;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import com.javateam.project.domain.MemberVO;
+import com.javateam.project.repository.MemberDao;
+import com.javateam.project.repository.MemberDaoImpl;
+
+public class selectJunitTest {
+	
+	MemberDao dao;
+	List<MemberVO> members;
+
+	@Before
+	public void setUp() throws Exception {
+		
+		dao = MemberDaoImpl.getInstance();
+	}
+
+	@Test
+	public void test() {
+		
+	
+		members = dao.getAllMembers();
+		
+		// 결과 유무 점검
+		assertNotNull(members); 
+		
+		// 결과의 개수(기대값)로 점검
+		assertEquals(12, members.size());
+		
+		int lastNum = members.size() - 1;
+		// 맨 처음, 마지막 요소(회원)이 동일한 지 점검
+		// 중복 데이터 출력 여부 점검
+		System.out.println("1 : " +members.get(0));
+		System.out.println("12 : " +members.get(lastNum));
+		System.out.println(members.get(0).equals(members.get(lastNum)));
+		
+		assertFalse(members.get(0).equals(members.get(lastNum)));
+		assertFalse(members.get(0).getId().equals(members.get(lastNum).getId()));
+		
+	}
+	
+	// 반대 조건 테스트
+//	@Test
+//	public void test2() {
+//		
+//		// 성공여부 점검(테스트) : 단언(단정) : assert
+//		// 기대값 : true => green light
+//		// 기대값 : false => red light
+//		assertFalse(dao.insertMember(member));
+//		
+//	}
+	
+//	@Test
+//	public void test3() {
+//		
+//		// 성공여부 점검(테스트) : 단언(단정) : assert
+//		assertEquals(true, dao.insertMember(member));
+//		
+//	}
+
+}
