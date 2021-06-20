@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items>
+	<item id="NodeList/GenericTableColumn">
+		<column name="컬럼명" visible="true" order="0" width="60"/>
+		<column name="#" visible="true" order="1" width="27"/>
+		<column name="데이터 유형" visible="true" order="2" width="78"/>
+		<column name="길이" visible="true" order="3" width="38"/>
+		<column name="Scale" visible="true" order="4" width="42"/>
+		<column name="Not Null" visible="true" order="5" width="60"/>
+		<column name="Auto Generated" visible="true" order="6" width="98"/>
+		<column name="Auto Increment" visible="true" order="7" width="98"/>
+		<column name="디폴트" visible="true" order="8" width="50"/>
+		<column name="설명" visible="true" order="9" width="38"/>
+	</item>
+	<item id="scriptSelectorViewer">
+		<column name="Script" visible="true" order="0" width="101"/>
+		<column name="Time" visible="true" order="1" width="151"/>
+		<column name="Info" visible="true" order="2" width="1600"/>
+	</item>
+</items>

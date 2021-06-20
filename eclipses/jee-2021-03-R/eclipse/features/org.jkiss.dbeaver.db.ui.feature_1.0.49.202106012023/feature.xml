@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.jkiss.dbeaver.db.ui.feature"
+      label="%featureName"
+      version="1.0.49.202106012023"
+      provider-name="%providerName">
+
+   <description>
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <includes
+         id="org.jkiss.dbeaver.db.feature"
+         version="1.0.49.202106012023"/>
+
+   <plugin
+         id="org.jkiss.dbeaver.ext.mysql.ui"
+         download-size="169"
+         install-size="380"
+         version="1.0.50.202106012023"
+         unpack="false"/>
+
+   <plugin
+         id="org.jkiss.dbeaver.ext.db2.ui"
+         download-size="86"
+         install-size="183"
+         version="1.0.1.202106012023"/>
+
+   <plugin
+         id="org.jkiss.dbeaver.ext.exasol.ui"
+         download-size="121"
+         install-size="262"
+         version="1.0.27.202106012023"
+         unpack="false"/>
+
+   <plugin
+         id="org.jkiss.dbeaver.ext.hana.ui"
+         download-size="22"
+         install-size="32"
+         version="1.0.11.202106012023"
+         unpack="false"/>
+
+   <plugin
+         id="org.jkiss.dbeaver.ext.mssql.ui"
+         download-size="72"
+         install-size="122"
+         version="1.0.57.202106012023"
+         unpack="false"/>
+
+   <plugin
+         id="org.jkiss.dbeaver.ext.oracle.ui"
+         download-size="154"
+         install-size="336"
+         version="1.0.45.202106012023"
+         unpack="false"/>
+
+   <plugin
+         id="org.jkiss.dbeaver.ext.postgresql.ui"
+         download-size="234"
+         install-size="546"
+         version="1.0.34.202106012023"
+         unpack="false"/>
+
+   <plugin
+         id="org.jkiss.dbeaver.ext.generic.ui"
+         download-size="35"
+         install-size="67"
+         version="1.0.34.202106012023"
+         unpack="false"/>
+
+   <plugin
+         id="org.jkiss.dbeaver.ext.vertica.ui"
+         download-size="9"
+         install-size="12"
+         version="1.0.49.202106012023"
+         unpack="false"/>
+
+   <plugin
+         id="org.jkiss.dbeaver.ext.athena.ui"
+         download-size="23"
+         install-size="36"
+         version="1.0.28.202106012023"
+         unpack="false"/>
+
+   <plugin
+         id="org.jkiss.dbeaver.ext.bigquery.ui"
+         download-size="29"
+         install-size="44"
+         version="1.0.28.202106012023"
+         unpack="false"/>
+
+   <plugin
+         id="org.jkiss.dbeaver.ext.spanner.ui"
+         download-size="22"
+         install-size="28"
+         version="1.0.28.202106012023"
+         unpack="false"/>
+
+   <plugin
+         id="org.jkiss.dbeaver.ext.snowflake.ui"
+         download-size="28"
+         install-size="46"
+         version="1.0.78.202106012023"
+         unpack="false"/>
+
+   <plugin
+         id="org.jkiss.dbeaver.ext.sqlite.ui"
+         download-size="8"
+         install-size="10"
+         version="1.0.28.202106012023"
+         unpack="false"/>
+
+   <plugin
+         id="org.jkiss.dbeaver.ext.datavirtuality.ui"
+         download-size="25"
+         install-size="40"
+         version="1.0.4.202106012023"
+         unpack="false"/>
+
+   <plugin
+         id="org.jkiss.dbeaver.ext.wmi"
+         os="win32"
+         download-size="66"
+         install-size="138"
+         version="2.0.160.202106012023"
+         unpack="false"/>
+
+</feature>

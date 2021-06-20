@@ -1,0 +1,27 @@
+package com.javateam.project.repository;
+
+import com.javateam.project.domain.MemberVO;
+
+public interface MemberDao {
+	
+	
+	/**
+	 * 회원정보 생성
+	 * @param member
+	 */
+	void insertMember(MemberVO member);
+	
+	/**
+	 * 회원정보 수정
+	 * @param member
+	 */
+	void updateMember(MemberVO member);
+	
+	/**
+	 * 회원정보 삭제
+	 * @param member
+	 */
+	void deleteMember(MemberVO member);
+	
+
+}

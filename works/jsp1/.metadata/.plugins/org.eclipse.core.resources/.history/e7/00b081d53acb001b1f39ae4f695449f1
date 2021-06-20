@@ -1,0 +1,32 @@
+package test;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import util.DbUtil;
+
+public class ConnectionTest {
+	
+	public static void main(String[] args) {
+		
+		Connection con = DbUtil.connect();
+		System.out.println("con : "+con);
+
+		// Test 테이블에서 name 컬럼(필드) "hi"라는 값 추출/비교 테스트
+		// select(DQL:data Query Language) 검색/조회
+		// SQL 구문
+		//String sql = "SELECT name FROM test WHERE id=1";
+		String sql = "SELECT name FROM test WHERE id=?";
+		// SQL 구문 해석/처리
+		try {
+			Statement stmt = con.createStatement();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// 결과 처리
+		
+	} //
+
+}

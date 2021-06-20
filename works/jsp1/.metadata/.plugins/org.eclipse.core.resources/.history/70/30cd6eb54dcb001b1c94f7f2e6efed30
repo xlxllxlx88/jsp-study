@@ -1,0 +1,10 @@
+package com.javateam.project.domain;
+
+
+@Getter
+@Setter
+public class MemberVO {
+	
+	private String uId;
+
+}

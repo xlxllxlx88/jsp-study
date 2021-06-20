@@ -1,0 +1,22 @@
+package test;
+
+import java.sql.Date;
+
+import com.javateam.project.domain.MemberVO;
+import com.javateam.project.repository.MemberDao;
+import com.javateam.project.repository.MemberDaoImpl;
+
+public class selectTest {
+	
+	public static void main(String[] args) {
+		
+		MemberDao dao = MemberDaoImpl.getInstance();
+		MemberVO member = new MemberVO();
+		
+		member.setPage(0);
+		member.setLimit(0);
+		
+		System.out.println("저장 성공 여부" + dao.getMembersByPage(member));
+	}
+
+}

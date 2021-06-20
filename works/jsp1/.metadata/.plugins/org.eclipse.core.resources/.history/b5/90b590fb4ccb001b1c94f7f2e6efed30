@@ -1,0 +1,5 @@
+package com.javateam.project.domain;
+
+public class MemberVO {
+
+}

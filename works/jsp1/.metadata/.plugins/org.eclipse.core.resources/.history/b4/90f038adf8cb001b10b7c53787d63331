@@ -1,0 +1,38 @@
+package test;
+
+import static org.junit.Assert.assertTrue;
+
+import java.sql.Date;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import com.javateam.project.domain.MemberVO;
+import com.javateam.project.repository.MemberDao;
+import com.javateam.project.repository.MemberDaoImpl;
+
+public class insertJunitTest {
+	
+	MemberDao dao;
+	MemberVO member = new MemberVO();
+
+	@Before
+	public void setUp() throws Exception {
+		
+		dao = MemberDaoImpl.getInstance();
+		member.setId("jsp");
+		member.setPw("1234");
+		member.setName("임꺽정");
+		member.setAddress("서울시 서초구 서초동");
+		member.setJoindate(new Date(System.currentTimeMillis()));
+	}
+
+	@Test
+	public void test() {
+		
+		// 성공여부 점검(테스트) : 단언(단정) : assert
+		assertTrue(dao.insertMember(member));
+		
+	}
+
+}

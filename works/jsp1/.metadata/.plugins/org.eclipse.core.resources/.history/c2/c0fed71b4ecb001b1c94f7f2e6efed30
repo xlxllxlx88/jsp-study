@@ -1,0 +1,12 @@
+package com.javateam.project.repository;
+
+import com.javateam.project.domain.MemberVO;
+
+public interface MemberDao {
+	
+	void insertMember(MemberVO memver);
+	
+	
+	
+
+}

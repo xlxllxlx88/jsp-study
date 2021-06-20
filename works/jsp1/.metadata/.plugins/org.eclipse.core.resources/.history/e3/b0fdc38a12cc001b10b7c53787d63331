@@ -1,0 +1,22 @@
+package test;
+
+import java.sql.Date;
+
+import com.javateam.project.domain.MemberVO;
+import com.javateam.project.repository.MemberDao;
+import com.javateam.project.repository.MemberDaoImpl;
+
+public class deleteTest {
+	
+	public static void main(String[] args) {
+		
+		MemberDao dao = MemberDaoImpl.getInstance();
+		MemberVO member = new MemberVO();
+		
+		member.setPw("2222");
+		member.setAddress("강서구");
+		
+		System.out.println("저장 성공 여부" + dao.updateMember(member));
+	}
+
+}

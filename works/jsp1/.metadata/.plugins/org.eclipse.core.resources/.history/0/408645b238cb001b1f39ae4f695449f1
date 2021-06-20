@@ -1,0 +1,24 @@
+package test;
+
+import java.sql.Connection;
+
+import util.DbUtil;
+
+public class ConnectionTest {
+	
+	public static void main(String[] args) {
+		
+		Connection con = DbUtil.connect();
+		System.out.println("con : "+con);
+
+		// Test 테이블에서 name 컬럼(필드) "hi"라는 값 추출/비교 테스트
+		// select(DQL:data Query Language) 검색/조회
+		// SQL 구문
+		String sql = "SELECT * FROM";
+		// SQL 구문 해석/처리
+		
+		// 결과 처리
+		
+	} //
+
+}

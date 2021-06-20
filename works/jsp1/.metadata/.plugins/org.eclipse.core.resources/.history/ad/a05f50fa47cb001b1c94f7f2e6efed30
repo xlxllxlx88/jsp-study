@@ -1,0 +1,13 @@
+SELECT *
+  FROM TEST t ;
+  
+ 
+UPDATE TEST SET NAME='JAVA' WHERE ID=1;
+
+INSERT INTO TEST VALUES(2, 'JSP');
+
+
+
+CREATE TABLE member_tb1(
+	id varchar(20) PRIMARY KEY,
+);

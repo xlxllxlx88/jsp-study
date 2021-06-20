@@ -1,0 +1,5 @@
+package com.javateam.project.repository;
+
+public interface MemberDao {
+
+}

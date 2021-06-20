@@ -1,0 +1,258 @@
+package com.javateam.project.repository;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.javateam.project.domain.MemberVO;
+import com.javateam.project.util.DbUtil;
+
+public class MemberDaoImpl implements MemberDao {
+	
+	// singleton pattern
+	// usage) MemberDao dao = MemberDaoImpl.getInstance(); 
+	// usage) MemberDaoImpl dao = MemberDaoImpl.getInstance();
+	// usage) MemberDaoImpl dao = new MemberDaoImpl(); -- singleton 아님
+	
+	
+	// Spring container => 자동으로 싱글턴 객체를 생성
+	// @Autowired MemberDao dao;
+	
+	private static MemberDaoImpl instance = null;
+	private MemberDaoImpl() {}
+	
+	public static MemberDaoImpl getInstance() {
+		
+		instance = new MemberDaoImpl();
+		return instance;
+		//return new MemberDaoImpl();
+	}
+	
+	@Override
+	public boolean insertMember(MemberVO member) {
+		
+		// 현재 메서드명
+		String methodName = new Exception().getStackTrace()[0].getMethodName();
+		
+		// 저장 성공 여부 플래그
+		boolean result = false;
+		
+		// DB 연결
+		Connection con = DbUtil.connect();
+
+		// SQL 구문
+		// ex) MyBatis => @, XML mapper로 독립
+		String sql = "INSERT INTO member_tbl VALUES (?,?,?,?,?)";
+		
+		// SQL 처리 객체 : ? 사용 가능
+		PreparedStatement pstmt = null;
+		// 예외 처리
+		// SQL 처리 :인자
+		try {
+			// 트랜잭션(transaction)
+			con.setAutoCommit(false); // 수동 커밋(commit) 모드로 전환
+			
+			pstmt = con.prepareStatement(sql);
+			// 인자 처리
+			pstmt.setString(1, member.getId());
+			pstmt.setString(2, member.getPw());
+			pstmt.setString(3, member.getName());
+			pstmt.setString(4, member.getAddress());
+			// vo는 java.util.Date 이고 pstmt의 setDate는 java.sql.Date여서 생기는 문제
+			// pstmt.setDate(5, member.getJoindate());
+			// Date date = (Date)member.getJoindate(); // (X)
+			// Date date = new Date(member.getJoindate().getTime());
+			pstmt.setDate(5, new Date(member.getJoindate().getTime()));
+
+			// SQL 실행  : 메시징
+			if (pstmt.executeUpdate() == 1) {
+				System.err.println("회원정보 저장 성공");
+				result = true;
+			} else {
+				System.err.println("회원정보 저장 실패");
+				result = false;
+			}
+			
+			con.commit(); // 커밋(승인 : commit)
+			
+		} catch (SQLException e) {
+			
+			try {
+				// 트랜잭션 취소(rollback)
+				con.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			System.err.println(methodName + "회원정보 저장 실패");
+			e.printStackTrace();
+		} finally {
+			// 자원 반납
+			DbUtil.close(con, pstmt, null);
+		}
+		return result;
+	}
+
+	@Override
+	public boolean updateMember(MemberVO member) {
+		
+		// 현재 메서드명
+		String methodName = new Exception().getStackTrace()[0].getMethodName();
+		
+		// 저장 성공 여부 플래그
+		boolean result = false;
+		
+		// DB 연결
+		Connection con = DbUtil.connect();
+
+		// SQL 구문
+		String sql = "UPDATE member_tbl SET pw=?, address=? WHERE id='jsp'";
+		
+		// SQL 처리 객체 : ? 사용 가능
+		PreparedStatement pstmt = null;
+		// 예외 처리
+		// SQL 처리 :인자
+		try {
+			// 트랜잭션(transaction)
+			con.setAutoCommit(false); // 수동 커밋(commit) 모드로 전환
+			
+			pstmt = con.prepareStatement(sql);
+			// 인자 처리
+			pstmt.setString(1, member.getPw());
+			pstmt.setString(2, member.getAddress());
+
+			// SQL 실행  : 메시징
+			if (pstmt.executeUpdate() == 1) {
+				System.err.println("회원정보 저장 성공");
+				result = true;
+			} else {
+				System.err.println("회원정보 저장 실패");
+				result = false;
+			}
+			
+			con.commit(); // 커밋(승인 : commit)
+			
+		} catch (SQLException e) {
+			
+			try {
+				// 트랜잭션 취소(rollback)
+				con.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			System.err.println(methodName + "회원정보 저장 실패");
+			e.printStackTrace();
+		} finally {
+			// 자원 반납
+			DbUtil.close(con, pstmt, null);
+		}
+		return result;
+	}
+
+	@Override
+	public void deleteMember(String id) {
+
+		//DB 연결
+		
+		// 예외 처리
+		// SQL 구문
+		
+		// SQL 처리 :인자
+		
+		// SQL 실행  : 메시징
+
+		// 자원 반납
+	}
+
+	@Override
+	public List<MemberVO> getAllMembers() {
+		
+		
+		// 현재 메서드명
+		String methodName = new Exception().getStackTrace()[0].getMethodName();
+		
+		// 결과값 처리
+		List<MemberVO> members = new ArrayList<>();
+		
+		MemberVO member = null;
+				
+		// DB 연결
+		Connection con = DbUtil.connect();
+
+		// SQL 구문
+		String sql = "SELECT * FROM member_tbl";
+		
+		// SQL 처리 객체 : ? 사용 가능
+		PreparedStatement pstmt = null;
+		
+		// SQL 결과셋 객체
+		ResultSet rs = null;
+		
+		// 예외 처리
+		// SQL 처리 :인자
+		try {
+			// 트랜잭션(transaction)
+			con.setAutoCommit(false); // 수동 커밋(commit) 모드로 전환
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				member = new MemberVo();
+				
+				member.setId(rs.getString("id"));
+				member.setPw(rs.getString("pw"));
+				member.setName(rs.getString("name"));
+				member.setAddress(rs.getString("address"));
+				member.setJoindate(new java.util.Date(rs.getDate("joindate").getTime()));
+				
+				members.add(member);
+			}
+			
+			con.commit();
+					
+		} catch (SQLException e) {
+			
+			try {
+				// 트랜잭션 취소(rollback)
+				con.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			System.err.println(methodName + "전체 회원정보 조회 실패");
+			e.printStackTrace();
+		} finally {
+			// 자원 반납
+			DbUtil.close(con, pstmt, rs);
+		}
+		
+		return members;
+	}
+
+	private Object getTime() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<MemberVO> getMembersByPage(int page, int limit) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public MemberVO getMember(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

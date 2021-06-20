@@ -1,0 +1,35 @@
+CREATE TABLE member_tbl(
+	id varchar(20) PRIMARY KEY,
+	pw varchar(20) NOT NULL,
+	name varchar(50) NOT NULL,
+	address varchar(500),
+	jindate date DEFAULT now()
+);
+
+CREATE TABLE demo2(
+	joidate date DEFAULT now()
+);
+
+INSERT INTO demo2 values (now());
+
+SELECT * FROM demo2;
+
+DROP TABLE IF EXISTS member_tb1;
+
+--------------------------------------------------------------
+
+SELECT * FROM member_tbl;
+
+INSERT INTO
+	member_tbl
+VALUES (
+	 'java', '1234', '홍길동', '서울 서초구 서초동', now()
+);
+
+UPDATE member_tbl
+   SET pw = '1111'
+	 , address = '서울 강남구 역삼동'
+WHERE id='java';
+
+DELETE FROM MEMBER_TBl WHERE id='java';
+

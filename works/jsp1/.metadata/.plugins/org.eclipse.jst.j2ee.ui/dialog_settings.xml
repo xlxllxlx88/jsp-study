@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item key="J2EE_EXPORT_OVERWRITE" value="true"/>
+	<item key="J2EE_EXPORT_SOURCE" value="true"/>
+	<list key="MRU_RUNTIME_STORE">
+		<item value="Apache Tomcat v9.0"/>
+	</list>
+	<list key="J2EE_EXPORT_JST_WEB">
+		<item value="C:\student\sso\git\jsp-study\Day5\submitSample.war"/>
+		<item value="C:\student\sso\git\jsp-study\webMarket\webMarket.war"/>
+		<item value="C:\student\sso\git\jsp-study\Day2\jsp_20210523_1.war"/>
+	</list>
+	<list key="J2EE_IMPORT_null">
+		<item value="C:\student\sso\git\jsp-study\Day6\error_page.war"/>
+		<item value="C:\student\sso\git\jsp-study\Day6\jstl_el_ex.war"/>
+		<item value="C:\student\sso\git\jsp-study\Day5\submitSample.war"/>
+		<item value="C:\student\sso\git\jsp-study\Day4\action_tag.war"/>
+		<item value="C:\student\sso\git\jsp-study\Day4\basic_object_ex.war"/>
+		<item value="C:\student\sso\git\jsp-study\Day2\jsp_20210523_1.war"/>
+	</list>
+</section>

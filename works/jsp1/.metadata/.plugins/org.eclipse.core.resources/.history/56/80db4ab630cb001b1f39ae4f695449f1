@@ -1,0 +1,12 @@
+package test;
+
+import util.DbUtil;
+
+public class ConnectionTest {
+	
+	private static void main(String[] args) {
+		
+		Connetion con = DbUtil.connect();
+	}
+
+}

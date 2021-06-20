@@ -1,0 +1,23 @@
+package test;
+
+import java.sql.Date;
+
+import com.javateam.project.domain.MemberVO;
+import com.javateam.project.repository.MemberDao;
+import com.javateam.project.repository.MemberDaoImpl;
+
+public class updateTest {
+	
+	public static void main(String[] args) {
+		
+		MemberDao dao = MemberDaoImpl.getInstance();
+		MemberVO member = new MemberVO();
+		
+		member.setId("jsp");
+		member.setPw("1111");
+		member.setJoindate(new Date(System.currentTimeMillis()));
+		
+		System.out.println("저장 성공 여부" + dao.insertMember(member));
+	}
+
+}
