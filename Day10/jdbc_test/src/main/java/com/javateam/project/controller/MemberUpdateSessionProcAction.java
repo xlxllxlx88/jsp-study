@@ -52,7 +52,6 @@ public class MemberUpdateSessionProcAction extends HttpServlet {
 		// 유의사항) 신규 패쓰워드 공백 => 기존 패쓰워드 유지
 		// MemberVo member = dao.getMember(id);
 		
-		
 		System.out.println("기존 회원정보 : " + member);
 		
 		System.out.println("실제 변경될 회원정보(패쓰워드) : " 
@@ -60,8 +59,11 @@ public class MemberUpdateSessionProcAction extends HttpServlet {
 		System.out.println("실제 변경될 회원정보(주소) : " 
 				+ request.getParameter("address"));
 		
+		// 변경 정보 반영
+		member.setPw(request.getParameter("pw2"));
+		member.setAddress(request.getParameter("address"));
+		
 		// 회원정보 수정
-		/*
 		if (dao.updateMember(member)==true) {
 			msg = "회원정보 수정에 성공하였습니다.";
 			System.out.println(msg);
@@ -74,9 +76,8 @@ public class MemberUpdateSessionProcAction extends HttpServlet {
 		
 		// JSP 페이지(회원정보 조회) 이동
 		RequestDispatcher rd 
-			= request.getRequestDispatcher("/member/update.jsp");
+			= request.getRequestDispatcher("/member/update_session.jsp");
 		rd.forward(request, response);
-		*/
 	} //
 
 }

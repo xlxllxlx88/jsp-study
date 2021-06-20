@@ -165,19 +165,62 @@ public final class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public void deleteMember(String id) {
+	public boolean deleteMember(String id) {
+
+		// 현재 메서드명
+		String methodName 
+			= new Exception().getStackTrace()[0].getMethodName();
+		
+		// 저장 성공 여부 플래그
+		boolean result = false;
 
 		// DB 연결
+		Connection con = DbUtil.connect();
+		
+		// SQL 구문
+		String sql = "DELETE FROM member_tbl WHERE id=?";
+		
+		// SQL 처리 객체 : "?" 인자 사용 가능
+		PreparedStatement pstmt = null;
 		
 		// 예외 처리
-		// SQL 구문
-		
 		// SQL 처리 : 인자
+		try {
+			// 트랜잭션(transaction)
+			con.setAutoCommit(false); // 수동 커밋(commit) 모드로 전환
+			
+			pstmt = con.prepareStatement(sql);
+			// 인자 처리
+			
+			pstmt.setString(1, id);
+						
+			// SQL 실행 : 메시징
+			if (pstmt.executeUpdate() == 1) {
+				System.out.println("회원정보 삭제 성공");
+				result = true;
+			} else {
+				System.err.println("회원정보 삭제 실패");
+				result = false;
+			} //
+			
+			con.commit(); // 커밋(승인:commit)
+			
+		} catch (SQLException e) {
+			
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			} // 트랜잭션 취소(rollback)
+			
+			System.err.println(methodName + " : 회원정보 삭제 실패");
+			e.printStackTrace();
+		} finally {
+			// 자원 반납
+			DbUtil.close(con, pstmt, null);
+		}
 		
-		// SQL 실행 : 메시징
-		
-		// 자원 반납
-
+		return result;
 	}
 
 	@Override

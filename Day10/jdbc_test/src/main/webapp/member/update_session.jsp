@@ -7,7 +7,9 @@
 <meta charset="UTF-8">
 <title>회원수정</title>
 </head>
-<body>
+<body>					 
+세션 정보 : ${sessionScope.MEMBER_SESSION}<br>
+
 	<c:if test="${not empty msg}">
 	<script>
 		alert("${msg}");
