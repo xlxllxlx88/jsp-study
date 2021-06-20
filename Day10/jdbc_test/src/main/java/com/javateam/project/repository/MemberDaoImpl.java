@@ -428,4 +428,59 @@ public final class MemberDaoImpl implements MemberDao {
 		return member;
 	}
 
+	@Override
+	public int getAllCount() {
+		
+		// 현재 메서드명
+		String methodName 
+			= new Exception().getStackTrace()[0].getMethodName();
+		
+		// 결과값 처리
+		int result = 0;
+		
+		// DB 연결
+		Connection con = DbUtil.connect();
+		
+		// SQL 구문
+		String sql = "SELECT count(*) FROM member_tbl";
+		
+		// SQL 처리 객체 : "?" 인자 사용 가능
+		PreparedStatement pstmt = null;
+		
+		// SQL 결과셋 객체
+		ResultSet rs = null;
+		
+		// 예외 처리
+		// SQL 처리 : 인자
+		try {
+			// 트랜잭션(transaction)
+			con.setAutoCommit(false); // 수동 커밋(commit) 모드로 전환
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				result = rs.getInt(1);
+			}
+			
+			con.commit();
+			
+		} catch (SQLException e) {
+			
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			} // 트랜잭션 취소(rollback)
+			
+			System.err.println(methodName + " : 전체 회원정보수 조회 실패");
+			e.printStackTrace();
+		} finally {
+			// 자원 반납
+			DbUtil.close(con, pstmt, rs);
+		}
+		
+		return result;
+	}
+
 }

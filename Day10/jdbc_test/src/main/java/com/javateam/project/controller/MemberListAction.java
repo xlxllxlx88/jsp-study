@@ -25,11 +25,20 @@ public class MemberListAction extends HttpServlet {
 		
 		MemberDao dao = MemberDaoImpl.getInstance();
 		
+		int limit = 5; // 페이지당 출력 인원수
 		int page = request.getParameter("page")==null ? 1 :
 			       Integer.parseInt(request.getParameter("page"));
 		
-		List<MemberVo> members = dao.getMembersByPage(page, 5);
+		List<MemberVo> members = dao.getMembersByPage(page, limit);
 		
+		// 전체 회원 수
+		int maxNum = dao.getAllCount();
+		
+		// 총 페이지 수
+		int totPage = maxNum / limit + 1;
+		
+		request.setAttribute("page", page);
+		request.setAttribute("totPage", totPage);
 		request.setAttribute("members", members);
 		
 		// JSP 페이지(회원정보 조회) 이동

@@ -34,6 +34,13 @@ public interface MemberDao {
 	List<MemberVo> getAllMembers();
 	
 	/**
+	 * 전체 회원정보 수
+	 * 
+	 * @return 전체 회원정보 수
+	 */
+	int getAllCount();
+	
+	/**
 	 * 전체 회원정보 조회(페이징 지원)
 	 * 
 	 * @param page 현재 페이지
